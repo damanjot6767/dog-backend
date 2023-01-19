@@ -1,15 +1,17 @@
 
-let express = require('express');
-let logger = require('morgan');
-require("dotenv").config()
+const express = require('express');
+const logger = require('morgan');
+require("dotenv").config();
+const cors = require("cors");
 const connect = require('./src/connect/connect.js');
 const Auth = require("./src/routes/Auth.js");
 const UserTask = require('./src/routes/Usertask.js');
-let app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors())
 
 app.use("/",Auth);
 app.use("/user",UserTask)
